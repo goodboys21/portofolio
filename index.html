@@ -16,16 +16,29 @@
             overflow-x: hidden;
         }
 
-        /* Efek Gelombang */
-        .wave {
+        /* Efek Pecahan Cat */
+        .paint-splash {
             position: absolute;
             bottom: 0;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 100%;
-            height: 100px;
-            background: url('https://i.imgur.com/KhM1t2r.png');
-            background-size: cover;
+            height: 150px;
         }
+
+        .splash {
+            position: absolute;
+            background: #00BFFF;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        /* Bentuk Pecahan Cat */
+        .splash-1 { width: 80px; height: 80px; top: 20px; left: 20%; transform: rotate(20deg); }
+        .splash-2 { width: 120px; height: 120px; top: 50px; left: 40%; transform: rotate(-15deg); }
+        .splash-3 { width: 60px; height: 60px; top: 10px; left: 60%; transform: rotate(30deg); }
+        .splash-4 { width: 100px; height: 100px; top: 40px; left: 80%; transform: rotate(-10deg); }
+        .splash-5 { width: 50px; height: 50px; top: 70px; left: 10%; transform: rotate(25deg); }
 
         .header {
             padding: 20px;
@@ -127,7 +140,14 @@
         </div>
     </div>
 
-    <div class="wave"></div>
+    <!-- Efek Pecahan Cat -->
+    <div class="paint-splash">
+        <div class="splash splash-1"></div>
+        <div class="splash splash-2"></div>
+        <div class="splash splash-3"></div>
+        <div class="splash splash-4"></div>
+        <div class="splash splash-5"></div>
+    </div>
 
 </body>
 </html>
