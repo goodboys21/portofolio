@@ -3,184 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bagus Xxpn - Portfolio</title>
+    <title>Bagus Xxpn</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: #00BFFF;
-            color: black;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #00aaff;
             text-align: center;
+            color: black;
         }
 
         .profile-container {
-            margin-top: 20px;
+            position: relative;
+            margin: 50px auto;
+            width: 150px;
+            height: 150px;
         }
 
-        .profile-img {
-            width: 120px;
-            height: 120px;
+        .profile-container img {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            border: 3px solid white;
+            border: 4px solid white;
+        }
+
+        .loading-circle {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-top: 4px solid white;
+            border-right: 4px solid white;
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .social-icons {
-            margin-top: 10px;
-        }
-
-        .social-icons a {
-            margin: 0 10px;
-            display: inline-block;
+            margin-top: 15px;
         }
 
         .social-icons img {
-            width: 30px;
-            height: 30px;
-            opacity: 0.7;
-            transition: opacity 0.3s;
+            width: 40px;
+            height: 40px;
+            margin: 0 10px;
+            cursor: pointer;
         }
 
-        .social-icons img:hover {
-            opacity: 1;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        /* Efek Ketik */
-        .typing {
-            font-size: 28px;
+        h1 {
+            font-size: 26px;
             font-weight: bold;
-            display: inline-block;
-            border-right: 3px solid black;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 0;
-            animation: typing 4s steps(30, end) infinite, blink 0.6s infinite;
+            margin-top: 20px;
+            min-height: 40px;
         }
 
-        @keyframes typing {
-            0% { width: 0 }
-            50% { width: 100% }
-            100% { width: 0 }
+        .about {
+            font-size: 16px;
+            margin: 15px auto;
+            max-width: 400px;
         }
 
-        @keyframes blink {
-            50% { border-color: transparent; }
+        .btn-container {
+            margin-top: 15px;
         }
 
-        .button {
-            display: inline-block;
-            margin: 10px;
-            padding: 15px 25px;
-            background: #007BFF;
-            color: white;
-            text-decoration: none;
+        .btn {
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
             border-radius: 5px;
-            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
         }
 
         .projects {
             margin-top: 40px;
+            padding: 20px;
         }
 
-        .project {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
+        .project-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 350px;
+            margin: 20px auto;
             opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        .project img {
+        .project-card img {
             width: 100%;
-            max-width: 600px;
-            border-radius: 5px;
+            border-radius: 10px;
         }
 
-        /* Animasi Scroll */
-        .project.show {
-            opacity: 1;
-            transform: translateY(0);
+        .project-card h3 {
+            margin-top: 10px;
+        }
+
+        .project-card p {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .project-card .btn {
+            display: block;
+            width: 100%;
+            background: #007BFF;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .show {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        .typing-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid black;
+            width: 0;
+            animation: typing 3s steps(30, end) infinite alternate;
         }
     </style>
 </head>
 <body>
+
+    <!-- FOTO PROFIL + ANIMASI LOADING -->
     <div class="profile-container">
-        <img src="https://img86.pixhost.to/images/612/565075997_kyzsenpai.jpg" alt="Foto Profil" class="profile-img">
-        
-        <div class="social-icons">
-            <a href="https://instagram.com/" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
-            </a>
-            <a href="https://tiktok.com/" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/TikTok_logo.svg" alt="TikTok">
-            </a>
-            <a href="https://wa.me/628xxx" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-            </a>
-        </div>
+        <div class="loading-circle"></div>
+        <img src="https://img86.pixhost.to/images/612/565075997_kyzsenpai.jpg" alt="Foto Profil">
     </div>
 
-    <div class="container">
-        <h2 class="typing">Halo, saya Bagus Xxpn!</h2>
-        <p>Saya adalah seorang pengembang yang suka membangun website dan proyek keren.</p>
-        <a href="#" class="button">Tentang Saya</a>
-        <a href="#" class="button">Kontak</a>
-        
-        <div class="projects">
-            <h2>Proyek Saya</h2>
-            
-            <div class="project">
-                <h3>Panel API Premium</h3>
-                <p>Sebuah panel API yang menyediakan berbagai fitur keren untuk developer.</p>
-                <img src="https://via.placeholder.com/600x300" alt="Project 1">
-                <br>
-                <a href="https://example.com" class="button">Try</a>
-            </div>
+    <!-- ICON SOSIAL MEDIA -->
+    <div class="social-icons">
+        <a href="https://instagram.com/" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+        </a>
+        <a href="https://tiktok.com/" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046122.png" alt="TikTok">
+        </a>
+        <a href="https://wa.me/628xxx" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+        </a>
+    </div>
 
-            <div class="project">
-                <h3>Admin Dashboard</h3>
-                <p>Dashboard admin yang responsif dan mudah digunakan.</p>
-                <img src="https://via.placeholder.com/600x300" alt="Project 2">
-                <br>
-                <a href="https://example.com" class="button">Try</a>
-            </div>
+    <!-- TEKS DENGAN EFEK KETIKAN -->
+    <h1 id="typing"></h1>
 
-            <div class="project">
-                <h3>Bot WhatsApp AI</h3>
-                <p>Bot pintar berbasis AI untuk membantu pengguna di WhatsApp.</p>
-                <img src="https://via.placeholder.com/600x300" alt="Project 3">
-                <br>
-                <a href="https://example.com" class="button">Try</a>
-            </div>
+    <p class="about">Saya adalah seorang pengembang yang suka membangun website dan proyek keren.</p>
+
+    <div class="btn-container">
+        <button class="btn">Tentang Saya</button>
+        <button class="btn">Kontak</button>
+    </div>
+
+    <!-- DAFTAR PROYEK -->
+    <div class="projects">
+        <h2>Proyek Saya</h2>
+
+        <div class="project-card">
+            <img src="https://via.placeholder.com/350x200" alt="Project 1">
+            <h3>Panel API Premium</h3>
+            <p>Sebuah panel API yang menyediakan berbagai fitur keren untuk developer.</p>
+            <a href="https://example.com" class="btn">Try</a>
+        </div>
+
+        <div class="project-card">
+            <img src="https://via.placeholder.com/350x200" alt="Project 2">
+            <h3>Website Portofolio</h3>
+            <p>Website yang menampilkan proyek-proyek terbaik saya dengan desain modern.</p>
+            <a href="https://example.com" class="btn">Try</a>
         </div>
     </div>
 
     <script>
-        // Animasi scroll muncul
-        document.addEventListener("DOMContentLoaded", function () {
-            let projects = document.querySelectorAll(".project");
-
-            function checkScroll() {
-                let triggerBottom = window.innerHeight * 0.9;
-                projects.forEach((project) => {
-                    let projectTop = project.getBoundingClientRect().top;
-                    if (projectTop < triggerBottom) {
-                        project.classList.add("show");
-                    }
-                });
+        // ANIMASI TEKS KETIKAN
+        const text = "Halo, saya Bagus Xxpn!";
+        let i = 0;
+        function typeEffect() {
+            document.getElementById("typing").textContent = text.substring(0, i);
+            i++;
+            if (i > text.length) {
+                setTimeout(() => { i = 0; typeEffect(); }, 1500);
+            } else {
+                setTimeout(typeEffect, 100);
             }
+        }
+        typeEffect();
 
-            window.addEventListener("scroll", checkScroll);
-            checkScroll();
-        });
+        // ANIMASI MUNCUL SAAT SCROLL
+        function revealProjects() {
+            let projects = document.querySelectorAll(".project-card");
+            projects.forEach((project) => {
+                let position = project.getBoundingClientRect().top;
+                let windowHeight = window.innerHeight;
+                if (position < windowHeight - 50) {
+                    project.classList.add("show");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", revealProjects);
+        revealProjects();
     </script>
 
 </body>
