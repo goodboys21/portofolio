@@ -9,36 +9,12 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #00BFFF, #ffffff);
+            background: #00BFFF;
             color: black;
             text-align: center;
             position: relative;
             overflow-x: hidden;
         }
-
-        /* Efek Pecahan Cat */
-        .paint-splash {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 150px;
-        }
-
-        .splash {
-            position: absolute;
-            background: #00BFFF;
-            border-radius: 50%;
-            opacity: 0.8;
-        }
-
-        /* Bentuk Pecahan Cat */
-        .splash-1 { width: 80px; height: 80px; top: 20px; left: 20%; transform: rotate(20deg); }
-        .splash-2 { width: 120px; height: 120px; top: 50px; left: 40%; transform: rotate(-15deg); }
-        .splash-3 { width: 60px; height: 60px; top: 10px; left: 60%; transform: rotate(30deg); }
-        .splash-4 { width: 100px; height: 100px; top: 40px; left: 80%; transform: rotate(-10deg); }
-        .splash-5 { width: 50px; height: 50px; top: 70px; left: 10%; transform: rotate(25deg); }
 
         .header {
             padding: 20px;
@@ -90,16 +66,25 @@
         }
 
         .project {
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
             padding: 15px;
             margin: 15px 0;
             border-radius: 5px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
         }
 
         .project img {
             width: 100%;
             max-width: 600px;
             border-radius: 5px;
+        }
+
+        /* Animasi Scroll */
+        .project.show {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -140,14 +125,25 @@
         </div>
     </div>
 
-    <!-- Efek Pecahan Cat -->
-    <div class="paint-splash">
-        <div class="splash splash-1"></div>
-        <div class="splash splash-2"></div>
-        <div class="splash splash-3"></div>
-        <div class="splash splash-4"></div>
-        <div class="splash splash-5"></div>
-    </div>
+    <script>
+        // Animasi scroll muncul
+        document.addEventListener("DOMContentLoaded", function () {
+            let projects = document.querySelectorAll(".project");
+
+            function checkScroll() {
+                let triggerBottom = window.innerHeight * 0.9;
+                projects.forEach((project) => {
+                    let projectTop = project.getBoundingClientRect().top;
+                    if (projectTop < triggerBottom) {
+                        project.classList.add("show");
+                    }
+                });
+            }
+
+            window.addEventListener("scroll", checkScroll);
+            checkScroll();
+        });
+    </script>
 
 </body>
 </html>
