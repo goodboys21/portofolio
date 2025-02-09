@@ -72,11 +72,12 @@
 
         .about {
             font-size: 16px;
-            margin: 20px auto;
+            margin: 15px auto;
             max-width: 400px;
+            text-align: justify;
             padding: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
+            background: white;
+            border-radius: 8px;
         }
 
         .btn-container {
@@ -95,41 +96,53 @@
         }
 
         .projects {
-            margin-top: 40px;
+            margin-top: 20px;
             padding: 20px;
         }
 
         .project-card {
+            display: flex;
+            align-items: center;
             background: white;
             padding: 20px;
             border-radius: 10px;
             max-width: 400px;
             margin: 20px auto;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-align: left;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
         .project-card img {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             border-radius: 10px;
+            margin-right: 15px;
         }
 
         .project-card h3 {
-            margin: 0;
+            margin-bottom: 5px;
         }
 
         .btn-try {
             background-color: #007BFF;
             color: white;
-            padding: 8px 16px;
+            padding: 6px 12px;
             border-radius: 5px;
             border: none;
             cursor: pointer;
             font-size: 14px;
-            margin-top: 10px;
+            margin-right: 5px;
+        }
+
+        .btn-donate {
+            background-color: #28a745;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
         }
 
         @keyframes fadeIn {
@@ -170,53 +183,53 @@
 
     <div class="projects">
         <h2>My Project</h2>
-        <div class="project-card">
-            <img src="https://via.placeholder.com/100" alt="Project Image">
+        <div class="project-card fade-in">
+            <img src="https://via.placeholder.com/80" alt="Project">
             <div>
                 <h3>Photo Enhancer</h3>
                 <p>Sebuah website yang dapat meningkatkan kualitas gambar anda</p>
                 <a href="https://bagus-enhancer.vercel.app" target="_blank">
                     <button class="btn-try">Try</button>
                 </a>
+                <a href="https://pay.baguss.web.id" target="_blank">
+                    <button class="btn-donate">Donasi</button>
+                </a>
             </div>
         </div>
     </div>
 
     <script>
-        // Efek ketik dan hapus
+        // Efek ketik & hapus
         const textElement = document.getElementById("typing-text");
-        const words = ["Halo, saya Bagus :D"];
-        let wordIndex = 0;
+        const textArray = ["Halo, saya Bagus :D"];
+        let textIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
 
         function typeEffect() {
-            let currentWord = words[wordIndex];
-            let displayText = currentWord.substring(0, charIndex);
-            textElement.textContent = displayText;
-
-            if (!isDeleting && charIndex < currentWord.length) {
-                charIndex++;
-                setTimeout(typeEffect, 100);
-            } else if (isDeleting && charIndex > 0) {
-                charIndex--;
-                setTimeout(typeEffect, 50);
+            let currentText = textArray[textIndex];
+            if (isDeleting) {
+                textElement.innerText = currentText.substring(0, charIndex--);
             } else {
-                isDeleting = !isDeleting;
+                textElement.innerText = currentText.substring(0, charIndex++);
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
                 setTimeout(typeEffect, 1500);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                setTimeout(typeEffect, 500);
+            } else {
+                setTimeout(typeEffect, isDeleting ? 50 : 100);
             }
         }
 
-        typeEffect();
+        document.addEventListener("DOMContentLoaded", typeEffect);
 
-        // Efek animasi proyek
+        // Efek fade-in project
         document.addEventListener("DOMContentLoaded", function() {
-            let projects = document.querySelectorAll('.project-card');
-            projects.forEach((project, index) => {
-                setTimeout(() => {
-                    project.classList.add('fade-in');
-                }, index * 300);
-            });
+            document.querySelector(".project-card").classList.add("fade-in");
         });
     </script>
 
